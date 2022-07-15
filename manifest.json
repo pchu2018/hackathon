@@ -1,0 +1,19 @@
+{
+  "name": "Pretty Study Buddy",
+  "description": "Choose an encouraging character to motivate you as you study and work!",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage"],
+  "action": {
+    "default-popup": "popup.html",
+    "default-icon": {
+      "16": "/images/get_started16.png" 
+    }
+  },
+  "icons": {
+    "16": "/images/get_started16.png" 
+  }
+}
