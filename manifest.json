@@ -8,8 +8,8 @@
   },
   "permissions": ["storage"],
   "action": {
-    "default-popup": "popup.html",
-    "default-icon": {
+    "default_popup": "popupUI.html",
+    "default_icon": {
       "16": "/images/get_started16.png" 
     }
   },

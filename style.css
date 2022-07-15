@@ -1,13 +1,28 @@
+/* THIS FILE STYLES EVERYTHING */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  width: 200px;
+}
+#title {
+  font-size: 20px;
+  color: dimgray;
+  text-align: center;
+  margin: 10px;
+}
+
 button {
+  display: block;
   height: 30px;
   width: fit-content;
   border: none;
-  margin: 10px;
+  margin: 10px auto;
+  padding: 5px;
   border-radius: 2px;
-  background-color: pink;
+  background-color: lightgray;
   color: white;
-}
-button.current {
-  box-shadow: 0 0 0 2px white,
-              0 0 0 4px black;
 }
