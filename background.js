@@ -6,5 +6,5 @@ chrome.runtime.onInstalled.addListener( () => {
   console.log('hellow there')
   // clear storage
   // chrome.storage.sync.set({ 'current' : 'otto' })
-  chrome.storage.sync.set({ 'made' : false })
+  chrome.storage.sync.set({ 'made' : false , 'current' : 'otto', 'version' : 'greeting'})
 })
