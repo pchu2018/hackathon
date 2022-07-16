@@ -4,7 +4,7 @@
 chrome.runtime.onInstalled.addListener( () => {
   // what do we want it to do when it is installed?
   console.log('hellow there')
-  // default button is animal
-  chrome.storage.sync.set({ 'current' : 'otto' })
+  // clear storage
+  // chrome.storage.sync.set({ 'current' : 'otto' })
   chrome.storage.sync.set({ 'made' : false })
 })

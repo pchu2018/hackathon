@@ -3,8 +3,15 @@
 
 // store image sources by buddy name in chrome storage
 chrome.storage.sync.set({
-  'ottoIMG' : 'http://images.shoutwiki.com/sanrio/thumb/8/81/Pompompurin.png/200px-Pompompurin.png',
-  'jujuIMG' : 'https://seeklogo.com/images/M/my_melody-logo-42B1DE4CAD-seeklogo.com.png'
+  'ottoIMG' : [
+    'https://raw.githubusercontent.com/pchu2018/hackathon/main/images/ottoBig.JPG',
+  ],
+  'jujuIMG' : [
+    'https://raw.githubusercontent.com/pchu2018/hackathon/main/images/jujuBig.PNG',
+  ],
+  'text-animations' : [
+    'https://raw.githubusercontent.com/pchu2018/hackathon/main/images/testingGift.gif'
+  ]
 })
 
 let otto = document.querySelector('#pei-buddy');
@@ -85,7 +92,7 @@ getButton.addEventListener('click', function(event) {
     }
   })
 })
-
+// version buttons
 
 
 // WEBPAGE SCRIPTS
@@ -95,18 +102,24 @@ function changeBuddyHelper(buddy) {
   let buddyIMG = document.querySelector('#study-buddy-img');
   // get new img src from storage
   chrome.storage.sync.get([`${buddy}IMG`], result => {
-    buddyIMG.setAttribute('src', result[`${buddy}IMG`])
+    buddyIMG.setAttribute('src', result[`${buddy}IMG`][0])
     console.log(`${buddy}IMG`)
   })
 }
 
 // create new buddy when 'GET BUDDY' is clicked
 function makeBuddyHelper() {
-
+  // create img container
   let test = document.createElement('div')
   document.body.append(test)
   test.setAttribute('id', 'study-buddy')
   test.style.cssText = 'position: fixed; bottom: 0; margin: 10px'
+  // create textbox
+  let speech = document.createElement('img')
+  test.append(speech)
+  speech.setAttribute('id', 'buddy-speech-bubble')
+  speech.setAttribute('src', 'https://raw.githubusercontent.com/pchu2018/hackathon/main/images/testingGift.gif')
+  speech.style.cssText = 'width: 200px; position: absolute; margin-left: 200px;'
   // create img inside of div
   let image = document.createElement('img')
   image.setAttribute('id', 'study-buddy-img')
@@ -116,18 +129,34 @@ function makeBuddyHelper() {
   chrome.storage.sync.get(['current'], function(result) {
     console.log('buddy here')
     if(result.current == 'otto') chrome.storage.sync.get(['ottoIMG'], result => {
-      image.setAttribute('src', result.ottoIMG)
+      image.setAttribute('src', result.ottoIMG[0])
     })
     if(result.current == 'juju') chrome.storage.sync.get(['jujuIMG'], result => {
-      image.setAttribute('src', result.jujuIMG)
+      image.setAttribute('src', result.jujuIMG[0])
     })
   })
+  // store timestamp
+  chrome.storage.sync.set({ 'time-started' : new Date()})
 }
 // REMOVE BUDDY 
 function removeBuddyHelper() {
   // get buddy element
   let buddy = document.querySelector('#study-buddy');
   buddy.remove();
+}
+
+// UPDATE PICTURE AND SPEECH BUBBLE
+function versionHelper (buddy) {
+  // get buddy img
+  let buddyIMG = document.querySelector('#study-buddy-img')
+  // get speech bubble
+  let speech = document.querySelector('#buddy-speech-bubble');
+  // retrieve version from storage and update
+}
+
+// retrieve time
+function timerHelper () {
+
 }
 
 async function changeBuddy (buddy) {
@@ -167,4 +196,16 @@ async function removeBuddy () {
   });
 }
 
+async function versionBuddy (buddy) {
+  let [tab] = await chrome.tabs.query({
+    active: true,
+    currentWindow: true
+  });
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    function: versionHelper,
+    args: [buddy]
+  });
+}
 
