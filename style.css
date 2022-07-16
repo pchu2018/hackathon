@@ -18,11 +18,27 @@ main {
 button {
   display: block;
   height: 30px;
-  width: fit-content;
+  width: 80px;
   border: none;
   margin: 10px auto;
   padding: 5px;
   border-radius: 2px;
   background-color: lightgray;
   color: white;
+}
+#GET {
+  background-color: orange;
+  width: 100px;
+}
+
+.styles {
+  display: flex;
+  flex-direction: row;
+  border-top: 1px dashed lightgray;
+}
+
+#one, #two, #three {
+  background-color: white;
+  color: lightgray;
+  margin: 0;
 }
